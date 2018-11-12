@@ -1,0 +1,56 @@
+<div class="row welcome-banner">
+	<h3 id="welcome">Welcome to Tournamentizer</h3>
+	<p style="text-align: center;"><strong>A free online application for managing a tournamets , leagues or any competitions that run on Swiss System, Round Robin or Elimination System.</strong></p>
+	<p style="text-align: center;"><strong>Here you can create and manage your tournament</strong></p>
+</div>
+
+<div class="row">
+	<div class="col-md-5 home-side">
+		<div class="row current-tournaments">
+			<h4 style="color: white;">View Tournaments/Leagues</h4>
+		</div>
+		<% @tournaments.each do |tourn| %>
+			<%= link_to tourn do %>
+			<div class="row tourn-link">
+				<h4><%= tourn.name %></h4>
+			</div>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="col-md-2"></div>	
+	<div class="col-md-5 home-side">
+		<div class="row current-tournaments">
+			<h4 style="color: white;">Modes</h4>
+		</div>
+		<%= link_to robins_path do  %>
+		<div class="row round_robin">
+			<div class="col-xs-4">
+				<img src="<%= asset_path( 'round_robin.jpg' ) %>" />
+			</div>
+			<div class="col-xs-8">
+				<h4 style="color: #191970;">Round Robin (Home & Away)</h4>
+			</div>
+		</div>	
+		<% end %>	
+		<%= link_to swits_path do  %>
+		<div class="row swiss_system">
+			<div class="col-xs-4">
+				<img src="<%= asset_path( 'swiss.png' ) %>" />
+			</div>
+			<div class="col-xs-8">
+				<h4 style="color: #191970;">Swiss System</h4>
+			</div>
+		</div>		
+		<% end %>
+		<%= link_to eliminations_path do  %>
+		<div class="row round_robin">		
+			<div class="col-xs-4">
+				<img src="<%= asset_path( 'elimination.png' ) %>" />
+			</div>
+			<div class="col-xs-8">
+				<h4 style="color: #191970;">Elimination</h4>
+			</div>		
+		</div>
+		<% end %>
+	</div>
+</div>

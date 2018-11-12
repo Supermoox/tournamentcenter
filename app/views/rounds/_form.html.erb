@@ -1,0 +1,39 @@
+<%= form_for([@tournament, @round ]) do |f| %>
+  <% if round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(round.errors.count, "error") %> prohibited this round from being saved:</h2>
+
+      <ul>
+      <% round.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%  if @rounds.blank? %>
+    <%= f.text_field :name, value: "Round 1" %>
+  <% elsif @rounds.count == 1 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 2" %></p>
+  <% elsif @rounds.count == 2 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 3" %></p>
+  <% elsif @rounds.count == 3 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 4" %></p>
+  <% elsif @rounds.count == 4 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 5" %></p>
+  <% elsif @rounds.count == 5 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 6" %></p>
+  <% elsif @rounds.count == 6 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 7" %></p>
+  <% elsif @rounds.count == 7 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 8" %></p>
+  <% elsif @rounds.count == 8 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 9" %></p>
+  <% elsif @rounds.count == 9 %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 10" %></p>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

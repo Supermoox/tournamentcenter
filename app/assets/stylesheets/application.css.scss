@@ -1,0 +1,220 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+a, a:link, a:visited{
+	text-decoration: none;
+	color: white;
+}
+.pagination a, .pagination{
+    /* border-radius: 0px; */
+    margin-right: 4px;
+    padding: 2px 5px;
+    color: black;
+    background-color: #00BFFF;
+}
+.input[type=number]{
+	width: 80%;
+}
+.email a{
+	color: grey;
+}
+.tourn-link {
+	padding: 10px;
+	color: #191970;
+	text-decoration: underline;
+}
+.tourn-link:hover{
+	background-color: #F0F8FF;
+	border: 1px solid #ccc;
+	color: #1E90FF;
+}
+.tournaments{
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 20px;
+	color: #1E90FF;
+}
+.tournaments:hover{
+	box-shadow:  2px 2px 5px 2px #888888;
+}
+
+.col-xs-2{
+	padding: 0;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	text-align: center;
+}
+
+.teams_name{
+	text-align: left;
+}
+.logs{
+	padding-left: 10px;
+}
+.col-md-5{
+	padding: 0;
+}
+.header-left{
+	padding-bottom: 20px; 
+	padding-top: 20px;
+}
+.header-left a{
+	color:  #1E90FF;
+}
+.wrapper{
+	background-color: white;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	border: 1px solid #ccc;
+}
+.row{
+	margin: 0;
+}
+.log-table{
+	margin-top: 5%;
+}
+.match{
+	border: 1px solid #ccc;
+	padding: 1%;
+	color: black;
+}
+.match:hover{
+	background-color: #C71585;
+	color: white;
+}
+.home{
+	padding-top: 1%;
+	padding-left: 0;
+	padding-right: 10px;
+}
+.away{
+	padding-top: 1%;
+	padding-right: 0;
+	padding-left: 10px;
+}
+.versus{
+	background-color: grey;
+	color: white;
+	border-radius: 4px;
+}
+.welcome-banner{
+	background-color: #F0F8FF;
+	margin-bottom: 50px;
+	color: #C0C0C0;
+	border: 2px solid #C71585;
+	border-radius: 4px;
+}
+.col-md-6{
+	padding: 0;
+}
+.container{
+	padding-left: 23%;
+	padding-right: 23%;
+}
+.main-menu{
+	background-color: #C71585;
+	margin-bottom: 2%;
+	border-bottom: 1px solid #ccc;
+}
+.main-menu a{
+	color:  white;
+	font-size: large; 
+}
+.main-menu a:hover{
+	color:   #191970;
+	font-size: large; 
+}
+
+
+
+#table-pairs{
+	background-color: white;
+	margin-bottom: 20px;
+}
+.table-responsive{
+	background-color: #fafafa;
+	border: 1px solid #ccc;
+}
+
+#round_name_field{
+	visibility: hidden;
+}
+.my-form{
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border: 1px solid #ccc;
+	background-color: white;
+}
+
+
+#form-lebel{
+	color: #6495ED;
+}
+#form-header{
+	text-align: center;
+	color: #708090;
+}
+.nested-fields{
+	background-color: #fafafa;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+}
+.navbar-default{
+	background-color: #C71585;
+	border-color: #C71585;
+}
+.navbar{
+	margin-bottom: 0;
+}
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #191970;
+}
+.register{
+	padding-left: 35%;
+}
+
+.footer{
+	height: 100px;
+	background-color: #191970;
+	margin-top: 20%;
+	padding-left: 6%;
+	padding-right: 10%;
+	text-align: center;
+}
+#logo a{
+	color: white;
+}
+.search{
+	padding-bottom: 20px; 
+	padding-top: 20px;
+}
+.my_search_field{
+	border: 4px solid #1E90FF;
+	width: 70%;
+
+}

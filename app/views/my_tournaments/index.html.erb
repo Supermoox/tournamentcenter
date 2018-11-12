@@ -1,0 +1,22 @@
+
+
+<div class="panel">
+	<h4 style="text-align: center; color: #191970;">Your Tournaments</h4>
+	<% unless @tournaments.blank? %>
+	  <% @tournaments.each do |tournament| %>
+	    <%= link_to tournament do  %> 
+	    	
+	      <div class="row tournaments">
+	        <p style="font-size: large; color: #1E90FF;"><%= tournament.name %></p>
+	        <p style="font-size: large; color: #1E90FF;"><%= link_to 'Delete', tournament, class: "btn btn-primary" ,method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	        <p style="font-size: large; color: #1E90FF;"><%= link_to 'Edit', edit_tournament_path(tournament), class: "btn btn-primary" %></p>
+	      </div>
+	    <% end %>
+	  <% end %>
+	<% end %>
+  <% if @tournaments.blank? %>
+  	<hr>
+     <h4> You have not added a tournament yet </h4>
+  <% end %>
+</div>
+

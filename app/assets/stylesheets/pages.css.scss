@@ -1,0 +1,118 @@
+.wrapper{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#welcome{
+	text-align: center;
+}
+.tournaments{
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 20px;
+}
+.tournaments:hover{
+	box-shadow:  2px 2px 5px 2px #888888;
+}
+
+#log-item{
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+#team_home{
+	text-align: right;
+}
+
+#team_away{
+	text-align: left;
+}
+#scores{
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 2%;
+	padding-left: 2%;
+	border-radius: 2px;
+	text-align: center;
+	color: black;
+	background-color: grey;
+}
+
+#versus-header{
+	text-align: center;
+	font-size: large;
+	background-color: #00BFFF;
+	border-top: 4px solid #C71585;
+	padding: 20px;
+	color: #C71585;
+}
+#contestants{
+	margin-right: 1%;
+	margin-left: 1%;
+}
+#log-body:hover{
+	background-color:	#1E90FF;
+}
+#log-team-name{
+	margin-left: 20px;
+	margin-top: 10px;
+	color: 	#2F4F4F;
+}
+.pending-start{
+	background-color: #F5F5F5;
+	padding: 50px;
+	color: #C71585;
+	border: 1px solid #ccc;
+}
+
+.first_round{
+	padding-left: 40%;
+	padding-right: 40%;
+	font-size: small;
+	padding-bottom: 10%;
+}
+.home-side {
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	background-color: #fafafa;
+	border-radius: 15px;
+}
+
+.current-tournaments{
+	background-color: #1E90FF;
+	text-align: center;
+	color: #191970;
+	height: 50px;
+}
+.tourn-link{
+	padding: 10px;
+}
+
+.round_robin{
+	padding: 20px;
+}
+.round_robin:hover{
+	background-color: #F0F8FF;
+	border: 1px solid #ccc;
+}
+.round_robin img{
+	height: 80%;
+	width: 80%;
+	margin-left: 20%;
+	border-radius: 30%;
+	border: 1px solid #1E90FF;
+}
+.swiss_system{
+	padding: 20px;
+}
+.swiss_system:hover{
+	background-color: #F0F8FF;
+	border: 1px solid #ccc;
+}
+.swiss_system img{
+	height: 100%;
+	width: 80%;
+	margin-left: 20%;
+	border-radius: 30%;
+	border: 1px solid #1E90FF;
+}

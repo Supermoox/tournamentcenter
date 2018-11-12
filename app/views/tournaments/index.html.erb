@@ -1,0 +1,13 @@
+
+
+<div class="panel">
+  <% @tournaments.each do |tournament| %>
+    <%= link_to tournament do  %> 
+    	
+      <div class="row tournaments">
+        <p style="font-size: large;"><%= tournament.name %></p>        
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

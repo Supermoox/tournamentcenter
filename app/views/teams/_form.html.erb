@@ -1,0 +1,64 @@
+<%= form_with(model: team, local: true) do |form| %>
+  <% if team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :team_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :points %>
+    <%= form.number_field :points, id: :team_points %>
+  </div>  
+  <div class="field">
+    <%= form.label :played %>
+    <%= form.number_field :played  %>
+  </div>
+  <div class="field">
+    <%= form.label :wins %>
+    <%= form.number_field :wins %>
+  </div>
+  <div class="field">
+    <%= form.label :lost %>
+    <%= form.number_field :lost %>
+  </div>
+  <div class="field">
+    <%= form.label :draws %>
+    <%= form.number_field :draws %>
+  </div>
+  <div class="field">
+    <%= form.label :allowed %>
+    <%= form.number_field :allowed %>
+  </div>
+  <div class="field">
+    <%= form.label :forced %>
+    <%= form.number_field :forced %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tournament_id %>
+    <%= form.text_field :tournament_id, id: :team_tournament_id %>
+  </div>
+  <div class="field">
+    <%= form.label :playing %>
+    <%= form.check_box :playing %>
+  </div>
+  <div class="field">
+    <%= form.label :host %>
+    <%= form.check_box :host %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
