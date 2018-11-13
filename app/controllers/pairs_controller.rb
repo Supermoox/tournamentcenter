@@ -1,23 +1,16 @@
 class PairsController < ApplicationController
   before_action :set_pair, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
-
-  def index
-    @pairs = Pair.all
-  end
-
-
-  def show
-  end
-
-  def new
-  @pair = Pair.new
-  end
 
   def edit
-    @teams = Team.where(tournament_id: @pair.round.tournament_id)
-    @home = @teams.where(id: @pair.home).first
-    @away = @teams.where(id: @pair.away).first
+    if current_user == @pair.round.tournament.user
+      @teams = Team.where(tournament_id: @pair.round.tournament_id)
+      @home = @teams.where(id: @pair.home).first
+      @away = @teams.where(id: @pair.away).first
+    else
+      redirect_to root_path
+    end
   end
 
  

@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <p id="form-lebel"><%= f.label :name %></p>
-    <%= f.text_field :name, :placeholder =>"title of tournament", :required => true, class: "form-control" %>
+    <span style="font-style: italic;"><%= f.text_field :name, :placeholder =>"title of tournament", :required => true, class: "form-control" %></span>
   </div>  
   <div class="field">
     <p id="form-lebel"><%= f.label :mode %><p>
@@ -24,13 +24,15 @@
   <div class="form-group">
 
     <div class="actions">
-      <%= link_to_add_association 'Add Team', f, :teams, class: 'btn btn-primary', data: { association_insertion_node: '.teams', association_insertion_method: :append } %>
-      <span style="color: grey;">Click this button repeatedly to add more teams!</span>
+      <%= link_to_add_association 'Add Team/Player', f, :teams, class: 'btn btn-primary', data: { association_insertion_node: '.teams', association_insertion_method: :append } %>
+      <span style="color: grey;">Click this button repeatedly to add more teams or players!</span>
     </div>
     <div class="teams">
-      <%= f.fields_for :teams do |builder| %>
-        <%= render 'team_fields', f: builder %>
-      <% end %>
+      <p style="margin-bottom:20px;">
+        <%= f.fields_for :teams do |builder| %>
+          <%= render 'team_fields', f: builder %>
+        <% end %>
+      </p>
     </div>
   </div>
   <div class="actions">

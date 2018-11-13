@@ -2,19 +2,14 @@
 
   <div class="form-group">
   	<p style="margin-top:10px;">
-    <span><%= link_to_remove_association "Remove this Team", f, class: 'btn btn-danger btn-xs' %></span>
+    <span><%= link_to_remove_association "Remove this Team/Player", f, class: 'btn btn-danger btn-xs' %></span>
     <span><%= f.text_field :name, :required => true, class: "form-control" %></span>  		
 
   	</p>
   	<p style="margin-top:10px; width: 100px;">
-    
-    <span style="color: #337ab7;">points</span>
-    <span><%= f.number_field :points %></span> 
-    <span style="color: #337ab7;">host</span> 		
-    <span><%= f.check_box :host %></span>  		
-
+      <span style="color: #337ab7;">points</span>
+      <span><%= f.number_field :points %></span> 
   	</p>
-
   </div>  
 
 

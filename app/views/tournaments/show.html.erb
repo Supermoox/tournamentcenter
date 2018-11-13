@@ -114,7 +114,7 @@
 
 			<% @rounds.each do |round| %>
 		    <p id="versus-header"><%= round.name %></p>
-		    <% round.pairs.each do |pair| %>
+		    <% round.pairs.order("created_at").each do |pair| %>
 		    	<% unless round.pairs.blank? %>
 		  			<% @home = @teams.where(id: pair.home).first %>
 		  			<% @away = @teams.where(id: pair.away).first %>
