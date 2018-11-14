@@ -14,7 +14,8 @@ class Round < ApplicationRecord
     	@teams_num = Team.where("tournament_id = ?", @id).count
     	@teams = Team.where("tournament_id = ?", @id).order("points DESC").order("forced - allowed DESC")
       @rounds = Round.where("tournament_id = ?", @id)
-    	
+
+
       @pairs_num = @teams_num /2
     	@count = 1
 
@@ -85,6 +86,17 @@ class Round < ApplicationRecord
           end
         end
   		end
+      @umatched_pairs = self.pairs.where(home: nil).where(away: nil)
+      unless @umatched_pairs.blank?
+        @umatched_pairs.each do |pair|
+          @unmatched = @teams.where(playing: false).order("points DESC")
+          pair.home = @unmatched.first.id
+          pair.away = @unmatched.drop(1).first.id
+          @unmatched.first.update(playing: true)
+          @unmatched.drop(1).first.update(playing: true)
+          pair.save
+        end
+      end
 
     #FOR THE LEAGUE ROUND ROBIN
 

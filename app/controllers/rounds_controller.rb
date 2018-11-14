@@ -35,23 +35,44 @@ class RoundsController < ApplicationController
     if @teams_num&1 == 0
 
       if @tournament.mode == "Swiss_System"
-        if @calc_rounds == @existing_num
-          @tournament.update(completed: true)
-          redirect_to @tournament
-        else
-          @playing = @teams.where(playing: true)
-          if @playing.blank?
-            @round = Round.new(round_params)
-            @round.tournament_id = @tournament.id
-            if @round.save
-              redirect_to @tournament
-            else
-              render 'new'
-            end
-          else
+        if @teams_num > 15
+          if 9 == @existing_num 
+            @tournament.update(completed: true)
             redirect_to @tournament
-            flash[:notice] = "Games are still being played"
+          else
+            @playing = @teams.where(playing: true)
+            if @playing.blank?
+              @round = Round.new(round_params)
+              @round.tournament_id = @tournament.id
+              if @round.save
+                redirect_to @tournament
+              else
+                render 'new'
+              end
+            else
+              redirect_to @tournament
+              flash[:notice] = "Games are still being played"
+            end
           end
+        else
+          if @calc_rounds == @existing_num 
+            @tournament.update(completed: true)
+            redirect_to @tournament
+          else
+            @playing = @teams.where(playing: true)
+            if @playing.blank?
+              @round = Round.new(round_params)
+              @round.tournament_id = @tournament.id
+              if @round.save
+                redirect_to @tournament
+              else
+                render 'new'
+              end
+            else
+              redirect_to @tournament
+              flash[:notice] = "Games are still being played"
+            end
+          end      
         end
       elsif @tournament.mode == "Round_Robin"
         unless @existing_num == @total_rounds 

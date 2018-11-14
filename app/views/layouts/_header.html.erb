@@ -8,8 +8,8 @@
 	</div>
 
   <div class="col-md-4 search">
-    <%= form_tag tournaments_path, :method => 'get' do %>
-      <%= text_field_tag :search, params[:search] ,class: "my_search_field" %>
+    <%= form_tag tournaments_path, :method => 'get', class: "my_search" do %>
+      <%= text_field_tag :search, params[:search] ,class: "search_field" %>
       <input type="submit" name="commit" value="Search" data-disable-with="Search">
     <% end %>
   </div>
