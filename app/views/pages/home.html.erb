@@ -1,13 +1,13 @@
 <div class="row welcome-banner">
 	<h3 id="welcome">Welcome to Tournament Center</h3>
-	<p style="text-align: center;"><strong>A free online application for managing tournamets , leagues or any competitions that run on Swiss System, Round Robin or Elimination System.</strong></p>
+	<p style="text-align: center;"><strong>An online application for managing tournamets , leagues or any competitions that run on Swiss System, Round Robin or Elimination System.</strong></p>
 	<p style="text-align: center;"><strong>Here you can create and manage your tournament</strong></p>
 </div>
 
 <div class="row">
 	<div class="col-md-5 home-side">
 		<div class="row current-tournaments">
-			<h4 style="color: white;">View Tournaments/Leagues</h4>
+			<h4 style="color: white;">Recent Tournaments</h4>
 		</div>
 		<% @tournaments.each do |tourn| %>
 			<%= link_to tourn do %>

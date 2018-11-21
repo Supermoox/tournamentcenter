@@ -14,7 +14,13 @@
 #register-sign-up{
 	float: right;
 	margin-top: 3%;
+	color: #1E90FF;
 }
 
 
-
+#register-sign-up a{
+	color: #1E90FF;
+}
+#register-sign-up a:hover{
+	color: white;
+}

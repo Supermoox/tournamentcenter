@@ -1,4 +1,4 @@
-<h2 style="text-align: center;"> <%= @tournament.name %></h2>
+<h2 style="text-align: center; font-family: initial;"> <%= @tournament.name %></h2>
 
 <hr>
 <% if @tournament.mode == "Swiss_System" %>
@@ -6,7 +6,14 @@
 	  <% if @rounds.blank? %>
 	  	<div class="pending-start">
 		  	<% if user_signed_in? && current_user == @tournament.user  %>	
-		  		 <%= render "round_one" %>
+		  		<% unless @tournament.kind == "Individuals" || !@players.blank? %>
+		  			<p style="text-align: center;">
+		  			<span>You may add players to each of the teams to keep track of individual goals and tournament's top scorers.</span>
+		  			<p style="text-align: center;"><%= link_to "Add Players", my_tournaments_path, class: "btn btn-success"  %></p>
+		  			</p>
+		  			<p style="text-align: center;">Or just continue without players.</p>
+		  		<% end %>
+		  		<%= render "round_one" %>
 		  	<% else %>
 		  		<h3>Tournament has not started Yet </h3>
 		  	<% end %>
@@ -35,7 +42,7 @@
 			<% @rounds.each do |round| %>
 
 		    <p id="versus-header"><%= round.name %></p>
-		    <% round.pairs.each do |pair| %>
+		    <% round.pairs.order("created_at").each do |pair| %>
 		    	<% unless round.pairs.blank? %>
 		  			<% @home = @teams.where(id: pair.home).first %>
 		  			<% @away = @teams.where(id: pair.away).first %>
@@ -91,6 +98,13 @@
 	  <% if @rounds.blank? %>
 	  	<div class="pending-start">
 		  	<% if user_signed_in? && current_user == @tournament.user  %>	
+		  		<% unless @tournament.kind == "Individuals" || !@players.blank? %>
+		  			<p style="text-align: center;">
+		  			<span>You may add players to each of the teams to keep track of their goals and tournament's top scorers.</span>
+		  			<p style="text-align: center;"><%= link_to "Add Players", my_tournaments_path, class: "btn btn-success"  %></p>
+		  			</p>
+		  			<p style="text-align: center;">Or just continue without players.</p>
+		  		<% end %>
 		  		<h2><p="text-align: center;"> <%= render "round_one" %></p></h2>
 		  	<% else %>
 		  		<h4 style="text-align: center;">This Tournament has not started Yet </h4>
@@ -179,7 +193,7 @@
 <div class="row log-table">
 	<hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
 	<h4 style="text-align: center;"> Table</h4>
-	<div class="table-responsive">
+	<div class="table-responsive goals">
 	  <table class="table">
 	    <thead>
 	      <tr>
@@ -216,5 +230,35 @@
 	</div>
 </div>
   
+
+ <% unless @tournament.kind == "Individuals" || @players.blank? %>
+	<div class="row log-table">
+		<hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
+		<h4 style="text-align: center;"> Goals Leaderboard</h4>
+		<div class="table-responsive">
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th scope="col">Position</th>
+		        <th scope="col">Name</th>
+		        <th scope="col">Team</th>
+		        <th scope="col">Goals</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	<% @players.each do |player| %>
+		    		<% @g_count = @g_count + 1 %>
+			      <tr>
+			        <th scope="row"><%= @g_count %></th>
+			        <td><%= player.name %></td>
+			        <td><%= player.team.name %></td>
+			        <td><%= player.goals %></td>
+			      </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		</div>
+	</div>
+ <% end %>
 
 

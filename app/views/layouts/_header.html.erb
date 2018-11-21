@@ -17,11 +17,13 @@
 		<h5 id="register-sign-up">
 			
         <% if user_signed_in? %>
-           <%= link_to "Account" , edit_user_registration_path %> /
-           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+           <span><%= link_to "Account" , edit_user_registration_path %></span>
+           <span> /</span>
+           <span><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></span>
         <% else %>
-          <%= link_to "Register", new_user_registration_path, class: "active" %> /
-          <%= link_to "Sign In ", new_user_session_path, class: "active" %>
+          <span><%= link_to "Register", new_user_registration_path %> </span>
+          <span> / </span>
+          <span><%= link_to "Sign In ", new_user_session_path %> </span>
         <% end %>
 		</h5>
 	</div>

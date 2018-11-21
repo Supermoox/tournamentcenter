@@ -1,4 +1,4 @@
-<%= form_with(model: team, local: true) do |form| %>
+<%= form_for @team do |f| %>
   <% if team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -12,53 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :team_name %>
+    <%= f.text_field :name, id: :team_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :points %>
-    <%= form.number_field :points, id: :team_points %>
-  </div>  
-  <div class="field">
-    <%= form.label :played %>
-    <%= form.number_field :played  %>
-  </div>
-  <div class="field">
-    <%= form.label :wins %>
-    <%= form.number_field :wins %>
-  </div>
-  <div class="field">
-    <%= form.label :lost %>
-    <%= form.number_field :lost %>
-  </div>
-  <div class="field">
-    <%= form.label :draws %>
-    <%= form.number_field :draws %>
-  </div>
-  <div class="field">
-    <%= form.label :allowed %>
-    <%= form.number_field :allowed %>
-  </div>
-  <div class="field">
-    <%= form.label :forced %>
-    <%= form.number_field :forced %>
-  </div>
 
-  <div class="field">
-    <%= form.label :tournament_id %>
-    <%= form.text_field :tournament_id, id: :team_tournament_id %>
+  <div class="form-group">
+    <div class="actions">
+      <%= link_to_add_association 'Add Player', f, :players, class: 'btn btn-primary', data: { association_insertion_node: '.players', association_insertion_method: :append } %>
+      <span style="color: grey;">Click this button repeatedly to add more or players!</span>
+    </div>
+    <div class="players">
+      <p style="margin-bottom:20px;">
+        <%= f.fields_for :players do |builder| %>
+          <%= render 'player_fields', f: builder %>
+        <% end %>
+      </p>
+    </div>
   </div>
-  <div class="field">
-    <%= form.label :playing %>
-    <%= form.check_box :playing %>
-  </div>
-  <div class="field">
-    <%= form.label :host %>
-    <%= form.check_box :host %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

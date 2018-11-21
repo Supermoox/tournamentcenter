@@ -1,0 +1,16 @@
+<div class="nested-fields">
+
+  <div class="form-group">
+  	<p style="margin-top:10px;">
+	    <span><%= link_to_remove_association "Remove this Player", f, class: 'btn btn-danger btn-xs' %></span>
+	    <span style="font-style: italic;"><%= f.text_field :name,  :placeholder =>"name", :required => true %></span>  		
+  	</p>
+  	<p style="width: 100px; margin-left: 120px; margin-top: 10px;">
+
+  		<span>Total goals</span>
+  		<span><%= f.number_field :goals %></span>
+  	</p>
+  	<p id="round_name_field"><%= f.number_field :tournament_id, value: @team.tournament_id %></p>
+
+  </div>  
+</div>

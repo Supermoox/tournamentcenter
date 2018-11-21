@@ -16,21 +16,21 @@
     <div class="col-md-4">
       <div class="form-group">
         <h4><%= @home.name %></h4>
-        <hr>
+        <hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
         <%= form.label :score %>
         <%= form.number_field :score_home, :required => true, class: "form-control"  %>
         <p id="round_name_field"> <%= form.number_field :home, id: :pair_home %></p>
       </div>
     </div>
     <div class="col-md-4 vs">
-      <div class="btn btn-warning">
+      <div class="btn btn-warning btn-vs">
         <h4 style="text-align: center;">VS</h4>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <h4><%= @away.name %></h4>
-        <hr>
+        <hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
         <%= form.label :score %>
         <%= form.number_field :score_away, :required => true, class: "form-control"  %>
         <p id="round_name_field"><%= form.number_field :away, id: :pair_away %></p>
@@ -38,16 +38,15 @@
     </div>
   </div>
 
-
-    
-
-
-    <% if !pair.ended %>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
-    <% else %>
-      <h4>Match Marked as Completed</h4>
-    <% end %>
+  <% if !pair.ended %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% else %>
+    <h4>Match Marked as Completed</h4>
+  <% end %>
   <% end %>
 </div>
+
+
+

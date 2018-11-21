@@ -2,19 +2,12 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
  
-  def index
-   # @teams = Team.all
-  end
 
- 
-  def show
-  end
- 
-  def new
-    @team = Team.new
-  end
- 
+
   def edit
+    unless user_signed_in? && @team.tournament.user == current_user
+      redirect_to root_path
+    end
   end
  
   def create
@@ -31,14 +24,12 @@ class TeamsController < ApplicationController
   end
  
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+   
+    if @team.update(team_params)
+      redirect_to my_tournaments_path
+      flash[:notice] = "Team updated"
+    else
+      render 'edit'
     end
   end
   
@@ -56,6 +47,6 @@ class TeamsController < ApplicationController
     end
 
      def team_params
-      params.require(:team).permit(:name, :points, :tournament_id, :wins, :played, :lost, :allowed, :forced, :draws, :playing, :num, :host, :seeded)
+      params.require(:team).permit(:name, :points, :tournament_id, :wins, :played, :lost, :allowed, :forced, :draws, :playing, :num, :host, :seeded, players_attributes: [:id, :_destroy, :name, :goals, :tournament_id])
     end
 end

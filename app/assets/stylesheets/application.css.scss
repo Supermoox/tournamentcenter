@@ -17,6 +17,10 @@
 @import "bootstrap";
 @import "font-awesome";
 
+body{
+	background-color: #fafafa;
+}
+
 a, a:link, a:visited{
 	text-decoration: none;
 	color: white;
@@ -40,7 +44,6 @@ a, a:link, a:visited{
 	text-decoration: underline;
 }
 .tourn-link:hover{
-	background-color: #F0F8FF;
 	border: 1px solid #ccc;
 	color: #1E90FF;
 }
@@ -80,11 +83,12 @@ a, a:link, a:visited{
 }
 .wrapper{
 	background-color: white;
-	padding-left: 5%;
-	padding-right: 5%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+	box-shadow:  1px 1px 2px 1px #888888;
+	padding: 5%;
 	border: 1px solid #ccc;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 10px;
 }
 .row{
 	margin: 0;
@@ -128,7 +132,6 @@ a, a:link, a:visited{
 }
 .container{
 	padding-left: 23%;
-	padding-right: 23%;
 }
 .main-menu{
 	background-color: #C71585;
@@ -218,7 +221,40 @@ a, a:link, a:visited{
 	height: 25px;
 
 }
-
+.btn-vs{
+	background-color: #C71585;
+}
+.btn-vs:hover{
+	background-color: #C71585;
+}
 .my_search{
 	height: 25px;
 }
+
+#team a{
+	color: blue;
+}
+#team a:hover{
+	color: skyblue;
+}
+
+#team-player a{
+	color: #191970;
+	text-decoration: underline;
+}
+#team-player a:hover{
+	color: skyblue;
+	text-decoration: underline;
+}
+.player_goals_update{
+	margin: 20px;
+	background-color: #1E90FF;
+}
+.goals{
+	background-color: #32CD32;
+}
+
+.players-info{
+	text-align: center;
+}
+

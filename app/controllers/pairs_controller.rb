@@ -3,11 +3,17 @@ class PairsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
 
+  def show
+    @players_home = Player.where(team_id: @pair.home)
+    @players_away = Player.where(team_id: @pair.away)
+  end
+
   def edit
     if current_user == @pair.round.tournament.user
       @teams = Team.where(tournament_id: @pair.round.tournament_id)
       @home = @teams.where(id: @pair.home).first
       @away = @teams.where(id: @pair.away).first
+
     else
       redirect_to root_path
     end

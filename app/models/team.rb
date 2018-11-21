@@ -1,7 +1,8 @@
 class Team < ApplicationRecord
   belongs_to :tournament
+  has_many :players, dependent: :destroy
   after_create :initialize_team
-
+  accepts_nested_attributes_for :players, allow_destroy: true, reject_if: :all_blank
   private
 
   def initialize_team

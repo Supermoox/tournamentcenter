@@ -21,6 +21,12 @@
     
     <%=  f.collection_select :mode, Tournament.modes.map{ |a| [a.first,a.first] },  :first, :second %>
   </div>
+  <div class="field">
+    <p id="form-lebel"><%= f.label :Type %><p>
+    
+    <%=  f.collection_select :kind, Tournament.kinds.map{ |a| [a.first,a.first] },  :first, :second %>
+  </div>
+
   <div class="form-group">
 
     <div class="actions">
