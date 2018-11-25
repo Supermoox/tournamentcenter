@@ -11,85 +11,8 @@
       </ul>
     </div>
   <% end %>
-  <%  if @rounds.blank? %>
-    <p id="round_name_field"> <%= f.text_field :name, value: "Round 1" %></p>
-  <% elsif @rounds.count == 1 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 2" %></p>
-  <% elsif @rounds.count == 2 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 3" %></p>
-  <% elsif @rounds.count == 3 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 4" %></p>
-  <% elsif @rounds.count == 4 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 5" %></p>
-  <% elsif @rounds.count == 5 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 6" %></p>
-  <% elsif @rounds.count == 6 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 7" %></p>
-  <% elsif @rounds.count == 7 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 8" %></p>
-  <% elsif @rounds.count == 8 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 9" %></p>
-  <% elsif @rounds.count == 10 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 10" %></p>
-  <% elsif @rounds.count == 11 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 11" %></p>
-  <% elsif @rounds.count == 12 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 12" %></p>
-  <% elsif @rounds.count == 13 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 13" %></p>
-  <% elsif @rounds.count == 14 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 14" %></p>
-  <% elsif @rounds.count == 15 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 15" %></p>
-  <% elsif @rounds.count == 16 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 16" %></p>
-  <% elsif @rounds.count == 17 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 17" %></p>
-  <% elsif @rounds.count == 18 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 18" %></p>
-  <% elsif @rounds.count == 19 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 19" %></p>
-  <% elsif @rounds.count == 20 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 20" %></p>
-  <% elsif @rounds.count == 21 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 21" %></p>
-  <% elsif @rounds.count == 22 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 22" %></p>
-  <% elsif @rounds.count == 23 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 23" %></p>
-  <% elsif @rounds.count == 24 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 24" %></p>
-  <% elsif @rounds.count == 25 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 25" %></p>
-  <% elsif @rounds.count == 26 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 26" %></p>
-  <% elsif @rounds.count == 27 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 27" %></p>
-  <% elsif @rounds.count == 28 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 28" %></p>
-  <% elsif @rounds.count == 29 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 29" %></p>
-  <% elsif @rounds.count == 30 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 30" %></p>
-  <% elsif @rounds.count == 31 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 31" %></p>
-  <% elsif @rounds.count == 32 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 32" %></p>
-  <% elsif @rounds.count == 33 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 33" %></p>
-  <% elsif @rounds.count == 34 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 34" %></p>
-  <% elsif @rounds.count == 35 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 35" %></p>
-  <% elsif @rounds.count == 36 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 36" %></p>
-  <% elsif @rounds.count == 37 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 37" %></p>
-  <% elsif @rounds.count == 38 %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round 38" %></p>
-  <% else %>
-    <p id="round_name_field"><%= f.text_field :name, value: "Round" %></p>
-  <% end %>
+
+  <p id="round_name_field"><%= f.text_field :name, value: "Round" %></p>
 
   <div class="actions">
     <input type="submit" name="commit" value="Generate next round" data-disable-with="Create Round" class="btn btn-warning">

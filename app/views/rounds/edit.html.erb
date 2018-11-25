@@ -1,6 +1,35 @@
 <h1>Editing Round</h1>
+<%= form_for([@tournament, @round ]) do |f| %>
+  <% if @round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(round.errors.count, "error") %> prohibited this round from being saved:</h2>
 
-<%= render 'form', round: @round %>
+      <ul>
+      <% round.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Show', @round %> |
+
+
+  <div class="form-group">
+    <div class="players">
+      <p style="margin-bottom:20px;">
+        <%= f.fields_for :pairs do |builder| %>
+          <%= render 'pair_fields', f: builder %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
 <%= link_to 'Back', tournament_path(@round) %>
+

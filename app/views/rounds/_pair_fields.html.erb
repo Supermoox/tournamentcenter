@@ -1,0 +1,27 @@
+<div class="nested-fields">
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-4">
+        <span><%= f.text_field :home_team %></span>
+      </div>
+      <div class="col-xs-2 score_update">
+        <span>
+          <%= f.number_field :score_home %>                
+        </span>
+      </div>
+      <div class="col-xs-2 score_update">
+        <span>              
+          <%= f.number_field :score_away %>
+        </span>
+      </div>
+
+      <div class="col-xs-4">
+        <p>
+          <span><%= f.text_field :away_team %></span>
+        </p>
+      </div>
+    </div>
+
+  </div>  
+</div>

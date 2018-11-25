@@ -3,9 +3,12 @@ class Round < ApplicationRecord
   has_many :pairs, dependent: :destroy
   after_create :generate_pairs
 
+  accepts_nested_attributes_for :pairs, allow_destroy: true, reject_if: :all_blank
+  
   private
 
   def generate_pairs
+
 
     #FOR THE SWISS SYSTEM
     if self.tournament.mode == "Swiss_System" 
@@ -15,6 +18,11 @@ class Round < ApplicationRecord
     	@teams = Team.where("tournament_id = ?", @id).order("points DESC").order("forced - allowed DESC")
       @rounds = Round.where("tournament_id = ?", @id)
 
+      @round_num = @rounds.count
+
+   
+      self.name = "Round " + @round_num
+      self.save
 
       @pairs_num = @teams_num /2
     	@count = 1
@@ -44,6 +52,8 @@ class Round < ApplicationRecord
               if !@found
                 @pair.home = opponent.id 
                 @pair.away = @current_team.id 
+                @pair.home_team = opponent.name
+                @pair.away_team = @current_team.name
                 @matched = true
                 opponent.update(playing: true)
                 @current_team.update(playing: true)
@@ -76,7 +86,10 @@ class Round < ApplicationRecord
               end
               if !@found
                 @pair.home = opponent.id 
-                @pair.away = @current_team.id 
+                @pair.away = @current_team.id
+                @pair.home_team = opponent.name
+                @pair.away_team = @current_team.name
+
                 @matched = true
                 opponent.update(playing: true)
                 @current_team.update(playing: true)
@@ -117,6 +130,9 @@ class Round < ApplicationRecord
 
       @count_rounds = Round.where("tournament_id = ?", @id).count
 
+   
+      self.name = "Round " + @count_rounds.to_s
+      self.save
 
       @first_legs = @teams_num - 1
 
@@ -129,6 +145,10 @@ class Round < ApplicationRecord
             @pair = self.pairs.create!
             @pair.home = pair.away
             @pair.away = pair.home
+
+            @pair.home_team = pair.away_team
+            @pair.away_team = pair.home_team
+
             @pair.save
           end
         else
@@ -138,6 +158,11 @@ class Round < ApplicationRecord
             @pair = self.pairs.create!
             @pair.home = pair.away
             @pair.away = pair.home
+
+
+            @pair.home_team = pair.away_team
+            @pair.away_team = pair.home_team
+
             @pair.save
           end          
         end
@@ -158,6 +183,10 @@ class Round < ApplicationRecord
             @second_team.update(host: true)
             @pair.home = @second_team.id 
             @pair.away = @first_team.id 
+
+            @pair.home_team = @second_team.name
+            @pair.away_team = @first_team.name
+
             @first_team.update(playing: true)
             @second_team.update(playing: true)
 
@@ -168,6 +197,10 @@ class Round < ApplicationRecord
             @second_team.update(host: false)
             @pair.home = @first_team.id 
             @pair.away = @second_team.id 
+
+            @pair.home_team = @first_team.name
+            @pair.away_team = @second_team.name
+
             @first_team.update(playing: true)
             @second_team.update(playing: true)
 
@@ -180,6 +213,10 @@ class Round < ApplicationRecord
 
             @pair.home = @first_team.id 
             @pair.away = @second_team.id 
+
+            @pair.home_team = @first_team.name
+            @pair.away_team = @second_team.name
+
             @first_team.update(playing: true)
             @second_team.update(playing: true)
             @pair.save          

@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
   before_action :set_round, only: [:show, :edit, :update, :destroy]
-  before_action :set_tournament
+  before_action :set_tournament, except: [:edit, :update]
   before_action :authenticate_user!, except: [:index, :show]
 
 
@@ -19,6 +19,11 @@ class RoundsController < ApplicationController
   end
 
   def edit
+    @tournament = @round.tournament
+
+    if current_user != @tournament.user
+      redirect_to root_path
+    end
   end
 
 
@@ -100,14 +105,11 @@ class RoundsController < ApplicationController
 
 
   def update
-    respond_to do |format|
-      if @round.update(round_params)
-        format.html { redirect_to @round, notice: 'Round was successfully updated.' }
-        format.json { render :show, status: :ok, location: @round }
-      else
-        format.html { render :edit }
-        format.json { render json: @round.errors, status: :unprocessable_entity }
-      end
+    if @round.update(round_params)
+      redirect_to @round.tournament
+      flash[:notce] = "Round Updated!"
+    else
+      render 'update'
     end
   end
 
@@ -129,6 +131,6 @@ class RoundsController < ApplicationController
       @tournament = Tournament.find(params[:tournament_id])
     end
     def round_params
-      params.require(:round).permit(:name, :tournament_id)
+      params.require(:round).permit(:name, :complete, :tournament_id, pairs_attributes: [:id, :_destroy, :home, :away, :score_away, :home_team, :away_team, :score_home, :ended, :round_id])
     end
 end

@@ -59,6 +59,6 @@ class PairsController < ApplicationController
     end
 
      def pair_params
-      params.require(:pair).permit(:home, :away, :score_away, :score_home, :ended, :round_id)
+      params.require(:pair).permit(:home, :away, :score_away, :home_team, :away_team, :score_home, :ended, :round_id)
     end
 end

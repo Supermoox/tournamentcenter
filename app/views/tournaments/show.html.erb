@@ -38,55 +38,31 @@
 	  		<% end %>
 	  	<% end %>	
 
-			<div class="row"><%= will_paginate @rounds, :page_links => false   %></div>
+			<div class="row"><%= will_paginate @rounds %></div>
 			<% @rounds.each do |round| %>
-
+				<% if user_signed_in? && current_user == @tournament.user %>
+					<p id="team"><%= link_to "Update Results", edit_round_path(round), class: "btn btn-default"  %></p>
+				<% end %>
 		    <p id="versus-header"><%= round.name %></p>
 		    <% round.pairs.order("created_at").each do |pair| %>
 		    	<% unless round.pairs.blank? %>
-		  			<% @home = @teams.where(id: pair.home).first %>
-		  			<% @away = @teams.where(id: pair.away).first %>
-			      	<% unless @home.blank? || @home.blank? %>	
-			      		<% if user_signed_in? && current_user == @tournament.user %>	      	
-				      		<%= link_to edit_pair_path(pair) do %>
-										<div class="row match">
-											<div class="col-xs-5 home">
-												<p id="team_home"><%= @home.name %></p>
-											</div>
-											<div class="col-xs-2 versus">
-							      		<span>
-							      			<%= pair.score_home %>	
-							      					-
-							      			<%= pair.score_away %>
-							      		</span>
-											</div>
-											<div class="col-xs-5 away">
-												<p id="team_away">
-													<span><%= @away.name %></span>
-												</p>
-											</div>
-										</div>
-									<% end %>
-								<% else %>
-									<div class="row match">
-										<div class="col-xs-5 home">
-											<p id="team_home"><%= @home.name %></p>
-										</div>
-										<div class="col-xs-2 versus">
-						      		<span>
-						      			<%= pair.score_home %>	
-						      					-
-						      			<%= pair.score_away %>
-						      		</span>
-										</div>
-										<div class="col-xs-5 away">
-											<p id="team_away">
-												<span><%= @away.name %></span>
-											</p>
-										</div>
-									</div>						
-								<% end %>
-			        <% end %>					    
+						<div class="row match">
+							<div class="col-xs-5 home">
+								<p id="team_home"><%= pair.home_team %></p>
+							</div>
+							<div class="col-xs-2 versus">
+			      		<span>
+			      			<%= pair.score_home %>	
+			      					-
+			      			<%= pair.score_away %>
+			      		</span>
+							</div>
+							<div class="col-xs-5 away">
+								<p id="team_away">
+									<span><%= pair.away_team %></span>
+								</p>
+							</div>
+						</div>						
 		      <% end %>
 		    <% end %>
 			<% end %>
@@ -123,63 +99,34 @@
 	  	<% end %>
 
 
-	  	<div class="row"><%= will_paginate @rounds, :page_links => false   %></div>
+	  	<div class="row"><%= will_paginate @rounds %></div>
+	  	
 			
 
 			<% @rounds.each do |round| %>
+				<% if user_signed_in? && current_user == @tournament.user %>
+					<p id="team"><%= link_to "Update Results", edit_round_path(round), class: "btn btn-default"  %></p>
+				<% end %>
 		    <p id="versus-header"><%= round.name %></p>
 		    <% round.pairs.order("created_at").each do |pair| %>
 		    	<% unless round.pairs.blank? %>
-		  			<% @home = @teams.where(id: pair.home).first %>
-		  			<% @away = @teams.where(id: pair.away).first %>
-			      	<% unless @home.blank? || @home.blank? %>	
-			      		<% if user_signed_in? && current_user == @tournament.user %>	      	
-				      		<%= link_to edit_pair_path(pair) do %>
-										<div class="row match">
-											<div class="col-xs-5 home">
-												
-												<p id="team_home">
-
-														<%= @home.name %>
-
-												</p>
-											</div>
-											<div class="col-xs-2 versus">
-							      		<span>
-							      			<%= pair.score_home %>	
-							      					-
-							      			<%= pair.score_away %>
-							      		</span>
-											</div>
-											<div class="col-xs-5 away">
-												<p id="team_away">
-
-														<%= @away.name %>
-						
-												</p>
-											</div>
-										</div>
-									<% end %>
-								<% else %>
-									<div class="row match">
-										<div class="col-xs-5 home">
-											<p id="team_home"><%= @home.name %></p>
-										</div>
-										<div class="col-xs-2 versus">
-						      		<span>
-						      			<%= pair.score_home %>	
-						      					-
-						      			<%= pair.score_away %>
-						      		</span>
-										</div>
-										<div class="col-xs-5 away">
-											<p id="team_away">
-												<span><%= @away.name %></span>
-											</p>
-										</div>
-									</div>						
-								<% end %>
-			        <% end %>					    
+						<div class="row match">
+							<div class="col-xs-5 home">
+								<p id="team_home"><%= pair.home_team %></p>
+							</div>
+							<div class="col-xs-2 versus">
+			      		<span>
+			      			<%= pair.score_home %>	
+			      					-
+			      			<%= pair.score_away %>
+			      		</span>
+							</div>
+							<div class="col-xs-5 away">
+								<p id="team_away">
+									<span><%= pair.away_team %></span>
+								</p>
+							</div>
+						</div>						
 		      <% end %>
 		    <% end %>
 			<% end %>

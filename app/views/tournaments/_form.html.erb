@@ -28,17 +28,16 @@
   </div>
 
   <div class="form-group">
-
-    <div class="actions">
-      <%= link_to_add_association 'Add Team/Player', f, :teams, class: 'btn btn-primary', data: { association_insertion_node: '.teams', association_insertion_method: :append } %>
-      <span style="color: grey;">Click this button repeatedly to add more teams or players!</span>
-    </div>
     <div class="teams">
       <p style="margin-bottom:20px;">
         <%= f.fields_for :teams do |builder| %>
           <%= render 'team_fields', f: builder %>
         <% end %>
       </p>
+    </div>
+    <div class="actions">
+      <%= link_to_add_association 'Add Team/Player', f, :teams, class: 'btn btn-primary', data: { association_insertion_node: '.teams', association_insertion_method: :append } %>
+      <span style="color: grey;">Click this button repeatedly to add more teams or players!</span>
     </div>
   </div>
   <div class="actions">
