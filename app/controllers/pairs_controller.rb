@@ -13,7 +13,6 @@ class PairsController < ApplicationController
       @teams = Team.where(tournament_id: @pair.round.tournament_id)
       @home = @teams.where(id: @pair.home).first
       @away = @teams.where(id: @pair.away).first
-
     else
       redirect_to root_path
     end

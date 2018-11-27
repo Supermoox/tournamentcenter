@@ -10,12 +10,20 @@
 
       <div class="col-xs-3 score_update">
         <span>
-          <%= f.number_field :score_home %>                
+          <% if f.object.ended %>
+            <%= f.number_field :score_home, :readonly => true %> 
+          <% else %>
+            <%= f.number_field :score_home %>    
+          <% end %>            
         </span>
       </div>
       <div class="col-xs-3 score_update">
-        <span>              
-          <%= f.number_field :score_away %>
+        <span>   
+          <% if f.object.ended %>
+            <%= f.number_field :score_away, :readonly => true %> 
+          <% else %>
+            <%= f.number_field :score_away %>    
+          <% end %>      
         </span>
       </div>
 
