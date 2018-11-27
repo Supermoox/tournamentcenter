@@ -1,4 +1,4 @@
-<h1>Editing Round</h1>
+<h4 style="text-align: center; color: #191970;">Update Results</h4>
 <%= form_for([@tournament, @round ]) do |f| %>
   <% if @round.errors.any? %>
     <div id="error_explanation">
@@ -15,7 +15,7 @@
 
 
   <div class="form-group">
-    <div class="players">
+    <div class="pairs">
       <p style="margin-bottom:20px;">
         <%= f.fields_for :pairs do |builder| %>
           <%= render 'pair_fields', f: builder %>
