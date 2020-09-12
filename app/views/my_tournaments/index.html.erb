@@ -5,7 +5,11 @@
 	<% unless @tournaments.blank? %>
 	  <% @tournaments.each do |tournament| %>    	
       <div class="row tournaments">
-        <h4 id="team"><%= link_to tournament.name, tournament %>
+        <h4 id="team">
+          <% unless tournament.image.blank? %>
+        	  <span><%= image_tag tournament.image.url(:small) %></span>
+          <% end %>
+        	<span><%= link_to tournament.name, tournament %></span>
 	        <span style="font-size: large; color: #1E90FF; float: right;"><%= link_to 'Delete', tournament, class: "btn btn-default" ,method: :delete, data: { confirm: 'Are you sure?' } %></span>
 	        <span style="font-size: large; color: #1E90FF; float: right;"><%= link_to 'Edit', edit_tournament_path(tournament), class: "btn btn-default" %></span>
         </h4>

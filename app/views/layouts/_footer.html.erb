@@ -1,32 +1,25 @@
-<div class="row footer">
-	<div class="col-md-4">
-		<p id="footer-header">Follow Me On </p>
-		<div class="socil-icons">
-		  <ul class="social">
-		      <li> <a href="https://web.facebook.com/Onemoox/" target="_blank" > <i class="fa fa-facebook">   </i> </a> </li>
-		      <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-		      <li> <a href="https://plus.google.com/105768822303956665315/" target="_blank"> <i class="fa fa-google-plus">   </i> </a> </li>
-		      <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
-		      <li> <a href="https://www.youtube.com/channel/UCxs7Iep9ZT4k8ksQN7Ii3XA?view_as=subscriber/" target="_blank"> <i class="fa fa-youtube">   </i> </a> </li> 
-		  </ul>
-	  </div>
-  </div>
-  <div class="col-md-4">
-  	<p id="footer-header">Powered By</p>
-  	<p style="color:grey;">One Moox © 2018. All rights reserved.</p>
-  </div>
-  <div class="col-md-4">
-  	<div class="row">
-  		<p id="footer-header">Contact Me</p>
-  		<div class="col-xs-5 email">
-		      <%= mail_to "onemoox@gmail.com" do %>
-		        <i class="fa fa-envelope-o" aria-hidden="true" target="_blank"></i> Webmail
-		      <% end %>
-		  </div>	
-  		<div class="col-xs-6 call">
-  			<span ><i class="fa fa-phone" aria-hidden="true"></i></span>
-		    <span style="color: grey;">+260977948551</span>
-		  </div>	
-	  </div>
-  </div>
+
+
+
+
+
+<div class="footer">
+	<p>
+		<span style="color: grey;">Powered by: </span><span style="color: red;">OneMoox @2020</span>
+	</p>
+
+	<p>
+		<span style="color: grey;">Contact:</span><span style="color: lightgrey;">
+      <%= mail_to "onemoox@gmail.com" do %>
+        <span style="padding: 5px; background-color: grey; border-radius: 6px; ">
+        	<i class="fa fa-envelope-o" aria-hidden="true" target="_blank"></i> Webmail 
+        </span>
+      <% end %>
+		</span>
+		<span style="color: lightgrey; margin-left: 10px;">
+        <span style="padding: 5px; background-color: grey; border-radius: 6px; ">
+        	<i class="fa fa-phone" aria-hidden="true"></i> +260977948551 
+        </span>
+		</span>
+	</p>
 </div>

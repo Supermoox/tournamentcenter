@@ -9,10 +9,15 @@
 		<div class="row current-tournaments">
 			<h4 style="color: white;">Recent Tournaments</h4>
 		</div>
-		<% @tournaments.each do |tourn| %>
-			<%= link_to tourn do %>
+		<% @tournaments.each do |tournament| %>
+			<%= link_to tournament do %>
 			<div class="row tourn-link">
-				<h4><%= tourn.name %></h4>
+				<h4>
+					<% unless tournament.image.blank? %>
+						<span><%= image_tag tournament.image.url(:small) %></span>
+					<% end %>
+					<span><%= tournament.name %></span>
+				</h4>
 			</div>
 			<% end %>
 		<% end %>

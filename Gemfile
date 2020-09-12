@@ -34,6 +34,8 @@ gem 'will_paginate', '>= 3.1'
 gem 'activeadmin', '~> 1.0'
 gem "font-awesome-rails"
 gem "figaro"
+gem 'paperclip', '~> 5.1'
+gem 'aws-sdk', '~> 2.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

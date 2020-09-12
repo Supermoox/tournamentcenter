@@ -8,7 +8,7 @@ class TournamentsController < ApplicationController
 
  
   def show
-    @rounds = Round.where(tournament_id: @tournament.id).order("created_at DESC").paginate(page: params[:page], per_page: 1)
+    @rounds = Round.where(tournament_id: @tournament.id).order("created_at").paginate(page: params[:page], per_page: 1)
     @round = Round.new
     @teams = Team.where(tournament_id: @tournament.id).order("points DESC").order("forced - allowed DESC").order("name")
     @count = 0
@@ -67,6 +67,6 @@ class TournamentsController < ApplicationController
     end
  
     def tournament_params
-      params.require(:tournament).permit(:name, :mode, :kind, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
+      params.require(:tournament).permit(:name, :mode, :kind, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
     end
 end

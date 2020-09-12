@@ -28,6 +28,12 @@
   </div>
 
   <div class="form-group">
+    <p id="form-lebel"><%= f.label :tournament_logo %><p>
+    <%= f.file_field :image %>
+  </div>
+
+
+  <div class="form-group">
     <div class="teams">
       <p style="margin-bottom:20px;">
         <%= f.fields_for :teams do |builder| %>

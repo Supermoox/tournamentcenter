@@ -1,4 +1,12 @@
-<h2 style="text-align: center; font-family: initial;"> <%= @tournament.name %></h2>
+
+<h4 style="text-align: center; font-family: initial;"> 
+	<% unless @tournament.image.blank? %>
+		<p><%= image_tag @tournament.image.url(:medium) %></p>
+	<% end %>
+	<p>
+	<%= @tournament.name %>
+	</p>
+</h4>
 
 <hr>
 <% if @tournament.mode == "Swiss_System" %>
@@ -25,7 +33,7 @@
 			  	<% if !@playings.blank? %>
 			  		<h4 style="text-align: center;">Games Underway</h4>
 			  	<% else %>
-			  		<p="text-align: center;"> <%= render "round" %></p>
+			  		<p style="text-align: center;"> <%= render "round" %></p>
 			  	<% end %>
 	  		<% end %>
 	  	<% end %>
@@ -39,6 +47,7 @@
 	  	<% end %>	
 
 			<div class="row"><%= will_paginate @rounds %></div>
+
 			<% @rounds.each do |round| %>
 				<% if user_signed_in? && current_user == @tournament.user %>
 					<p id="team"><%= link_to "Update Results", edit_round_path(round), class: "btn btn-default"  %></p>
@@ -178,7 +187,7 @@
 </div>
   
 
- <% unless @tournament.kind == "Individuals" || @players.blank? %>
+<% unless @tournament.kind == "Individuals" || @players.blank? %>
 	<div class="row log-table">
 		<hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
 		<h4 style="text-align: center;"> Goals Leaderboard</h4>
@@ -206,6 +215,6 @@
 		  </table>
 		</div>
 	</div>
- <% end %>
+<% end %>
 
 

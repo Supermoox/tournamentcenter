@@ -12,9 +12,7 @@
     </div>
   <% end %>
 
-  <p id="round_name_field"><%= f.text_field :name, value: "Round" %></p>
-
   <div class="actions">
-    <input type="submit" name="commit" value="Generate next round" data-disable-with="Create Round" class="btn btn-warning">
+    <input type="submit" name="commit" value="Generate next round" data-disable-with="Generating..." >
   </div>
 <% end %>

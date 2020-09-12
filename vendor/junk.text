@@ -1,0 +1,1 @@
+  <p id="round_name_field"><%= f.text_field :name, value: "Round" %></p>
