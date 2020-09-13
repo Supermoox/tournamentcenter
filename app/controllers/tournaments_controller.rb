@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   before_action :authenticate_user!, except: [:index, :show]
  
   def index
@@ -28,6 +28,18 @@ class TournamentsController < ApplicationController
     end
   end
  
+ def publish
+   @tournament.update(publish: true)
+   redirect_to @tournament
+   flash[:notice] = "Tournament Published!"
+ end 
+
+ def unpublish
+   @tournament.update(publish: false)
+   redirect_to @tournament
+   flash[:notice] = "Tournament Now in Private mode!"
+ end
+
   def create
     @tournament = current_user.tournaments.build(tournament_params)
     respond_to do |format|
@@ -67,6 +79,6 @@ class TournamentsController < ApplicationController
     end
  
     def tournament_params
-      params.require(:tournament).permit(:name, :mode, :kind, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
+      params.require(:tournament).permit(:name, :mode, :kind, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
     end
 end

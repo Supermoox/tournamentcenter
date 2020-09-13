@@ -1,14 +1,31 @@
 
 <h4 style="text-align: center; font-family: initial;"> 
 	<% unless @tournament.image.blank? %>
-		<p><%= image_tag @tournament.image.url(:medium) %></p>
+		<p class="tournament_logo"><%= image_tag @tournament.image.url(:medium) %></p>
 	<% end %>
 	<p>
 	<%= @tournament.name %>
 	</p>
 </h4>
 
+<% if user_signed_in? && current_user == @tournament.user  %>
+	<% if @tournament.publish %>
+		<p style="margin-top: 20px;">
+		  <span style="margin-right: 10px;"> <%= link_to 'Unpublish',unpublish_tournament_path(@tournament), method: :patch, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+		  </span> <br>
+		  <span style="font-size: 12px;font-style: italic;color: grey;">Make this tournament private, only visible to you.</span>
+		</p>
+	<% else %>
+		<p style="margin-top: 20px;">
+		  <span style="margin-right: 10px;"> <%= link_to 'Publish',publish_tournament_path(@tournament), method: :patch, class: "btn btn-success", data: { confirm: 'Are you sure?' } %>
+		  </span> <br>
+		  <span style="font-size: 12px;font-style: italic;color: grey;">Make this tournament public,visible to all.</span>
+		</p>
+	<% end %>
+<% end %>
+
 <hr>
+
 <% if @tournament.mode == "Swiss_System" %>
 	<div class="row">
 	  <% if @rounds.blank? %>

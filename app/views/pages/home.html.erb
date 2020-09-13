@@ -14,7 +14,7 @@
 			<div class="row tourn-link">
 				<h4>
 					<% unless tournament.image.blank? %>
-						<span><%= image_tag tournament.image.url(:small) %></span>
+						<span class="tournament_logo"><%= image_tag tournament.image.url(:small) %></span>
 					<% end %>
 					<span><%= tournament.name %></span>
 				</h4>

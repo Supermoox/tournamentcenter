@@ -21,7 +21,7 @@ class Round < ApplicationRecord
       @round_num = @rounds.count
 
    
-      self.name = "Round " + @round_num
+      self.name = "Round " + @round_num.to_s
       self.save
 
       @pairs_num = @teams_num /2
