@@ -5,7 +5,12 @@
     <%= link_to tournament do  %> 
     	
       <div class="row tournaments">
-        <p style="font-size: large;"><%= tournament.name %></p>        
+        <p style="font-size: large;">
+					<% unless tournament.image.blank? %>
+						<span class="tournament_logo"><%= image_tag tournament.image.url(:small) %></span>
+					<% end %>
+        	<%= tournament.name %>
+        </p>        
       </div>
     <% end %>
   <% end %>
