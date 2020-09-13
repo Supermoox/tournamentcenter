@@ -4,7 +4,7 @@ class TournamentsController < ApplicationController
  
   def index
     @tournaments = Tournament.where(["name LIKE ?","%#{params[:search]}%"]).order("created_at DESC").paginate(page: params[:page], per_page: 10)
-    @tournament = @tournament.where(publish: true)
+    @tournaments = @tournaments.where(publish: true)
   end
 
  
