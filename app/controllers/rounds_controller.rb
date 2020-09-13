@@ -56,7 +56,7 @@ class RoundsController < ApplicationController
               end
             else
               redirect_to @tournament
-              flash[:notice] = "Games are still being played"
+              flash[:notice] = " Update all resoults for " + @tournament.rounds.last.name 
             end
           end
         else
