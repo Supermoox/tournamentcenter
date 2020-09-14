@@ -1,19 +1,19 @@
 <div class="first_round">
-<%= form_for([@tournament, @round ]) do |f| %>
-  <% if @round.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
+  <%= form_for([@tournament, @round ]) do |f| %>
+    <% if @round.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
 
-      <ul> 
-      <% @round.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul> 
+        <% @round.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <p id="round_name_field"><%= f.text_field :name, value: "Round 1" %></p>
+    <div class="actions">
+      <input type="submit" name="commit" value="Generate The First Round" data-disable-with="Create Round" class="#">
     </div>
   <% end %>
-  <p id="round_name_field"><%= f.text_field :name, value: "Round 1" %></p>
-  <div class="actions">
-    <input type="submit" name="commit" value="Generate The First Round" data-disable-with="Create Round" class="#">
-  </div>
-<% end %>
 </div>

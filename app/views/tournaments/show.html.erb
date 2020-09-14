@@ -45,8 +45,7 @@
 	  	</div>
 	  <% else %>	
 	  	<% if user_signed_in? && current_user == @tournament.user  %>
-	  		<% if !@tournament.completed %>
-	  			
+	  		<% unless @tournament.completed %>
 			  	<% if !@playings.blank? %>
 			  		<h4 style="text-align: center;">Games Underway</h4>
 			  	<% else %>
@@ -63,7 +62,8 @@
 	  		<% end %>
 	  	<% end %>	
 
-			<div class="row"><%= will_paginate @rounds %></div>
+			<div class="row"><%= will_paginate @rounds, :previous_label => 'Prev', :next_label => 'Next' %></div>
+
 
 			<% @rounds.each do |round| %>
 				<% if user_signed_in? && current_user == @tournament.user %>
