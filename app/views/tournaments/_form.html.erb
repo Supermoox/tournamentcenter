@@ -16,12 +16,23 @@
     <p id="form-lebel"><%= f.label :name %></p>
     <span style="font-style: italic;"><%= f.text_field :name, :placeholder =>"title of tournament", :required => true, class: "form-control" %></span>
   </div>  
-  <div class="field">
+
+
+  <div class="form-group">
     <p id="form-lebel"><%= f.label :mode %><p>
     
-    <%=  f.collection_select :mode, Tournament.modes.map{ |a| [a.first,a.first] },  :first, :second %>
+
+    <div class="form-group">
+      <select name="tournament[mode]" id="tournament_mode" onchange="yesnoCheck(this);">
+        <option value="Round_Robin">Round_Robin</option>
+        <option value="Swiss_System">Swiss_System</option>
+      </select>
+    </div>
+
   </div>
-  <div class="field">
+
+
+  <div class="form-group">
     <p id="form-lebel"><%= f.label :Type %><p>
     
     <%=  f.collection_select :kind, Tournament.kinds.map{ |a| [a.first,a.first] },  :first, :second %>
@@ -30,7 +41,7 @@
   <div class="form-group">
     <p id="form-lebel"><%= f.label :tournament_logo %><p>
     <%= f.file_field :image %>
-  </div>
+  </div>  
 
 
   <div class="form-group">
@@ -46,8 +57,38 @@
       <span style="color: grey;">Click this button repeatedly to add more teams or players!</span>
     </div>
   </div>
+
+
+  <div class="form-group">
+    <div id="ifYes" style="display: none;">
+      <div class="form-group">
+        <p id="form-lebel">
+          <%= f.label :number_of_rounds %>
+        <p>
+        <span>
+          <%=  f.collection_select :rounds_num, Tournament.rounds_nums.map{ |a| [a.first,a.first] },  :first, :second %>
+        </span>
+        <span style="color: black; font-weight: bold; margin-left: 10px;">Note:</span> 
+        <span style="color: red; font-style: italic; font-size: 12px;">
+          If you have added less than 16 teams/players above, this option will be reset to "Default"!.
+        </span>
+      </div>        
+    </div>
+  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 </div>
+
+<script type="text/javascript">
+  function yesnoCheck(that) {
+      if (that.value == "Swiss_System") {
+          document.getElementById("ifYes").style.display = "block";
+      } else {
+          document.getElementById("ifYes").style.display = "none";
+      }
+  }
+</script>

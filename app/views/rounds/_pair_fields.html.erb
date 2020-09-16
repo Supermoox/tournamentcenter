@@ -13,7 +13,7 @@
           <% if f.object.ended %>
             <%= f.number_field :score_home, :readonly => true %> 
           <% else %>
-            <%= f.number_field :score_home  %>    
+            <%= f.number_field :score_home, min: 0  %>    
           <% end %>            
         </span>
       </div>
@@ -22,7 +22,7 @@
           <% if f.object.ended %>
             <%= f.number_field :score_away, :readonly => true %> 
           <% else %>
-            <%= f.number_field :score_away %>    
+            <%= f.number_field :score_away, min: 0 %>    
           <% end %>      
         </span>
       </div>

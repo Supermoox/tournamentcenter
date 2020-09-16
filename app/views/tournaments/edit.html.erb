@@ -19,30 +19,25 @@
     <%= f.text_field :name, :placeholder =>"title of tournament", :required => true, class: "form-control" %>
   </div>  
 
-  <div class="form-group">
-    <p id="form-lebel"><%= f.label :mode %><p>
-    <%=  f.collection_select :mode, Tournament.modes.map{ |a| [a.first,a.first] },  :first, :second %>
-  </div>  
-
-
-  <div class="form-group">
 
   <div class="form-group">
     <p id="form-lebel"><%= f.label :tournament_logo %><p>
     <%= f.file_field :image %>
   </div>
+
   <div class="actions">
     <p style="margin-bottom:20px;">
     <%= link_to_add_association 'Add Team/Player', f, :teams, class: 'btn btn-primary', data: { association_insertion_node: '.teams', association_insertion_method: :append } %>
     <span style="color: grey;">Click this button repeatedly to add more teams!</span>
     </p>
   </div>
+
   <div class="teams">
     <%= f.fields_for :teams do |builder| %>
       <%= render 'team_fields2', f: builder %>
     <% end %>
   </div>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

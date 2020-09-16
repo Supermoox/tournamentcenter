@@ -37,29 +37,36 @@ class RoundsController < ApplicationController
     @total_rounds = @num_rounds * 2
 
 
+
+    if @tournament.rounds_num == 'Five'
+      @num_rounds = 5
+    elsif @tournament.rounds_num == 'Nine'
+      @num_rounds = 9
+    end
+
     if @teams_num&1 == 0
 
       if @tournament.mode == "Swiss_System"
-        #if @teams_num > 15
-        #  if 9 == @existing_num 
-        #    @tournament.update(completed: true)
-        #    redirect_to @tournament
-        #  else
-        #    @playing = @teams.where(playing: true)
-        #    if @playing.blank?
-        #      @round = Round.new(round_params)
-        #      @round.tournament_id = @tournament.id
-        #      if @round.save
-        #        redirect_to @tournament
-        #      else
-        #        render 'new'
-        #      end
-        #    else
-        #      redirect_to @tournament
-        #      flash[:notice] = " Update all results for " + @tournament.rounds.last.name 
-        #    end
-        #  end
-        #else
+        if @teams_num > 15 && @tournament.rounds_num != 'Default'
+          if @num_rounds == @existing_num 
+            @tournament.update(completed: true)
+            redirect_to @tournament
+          else
+            @playing = @teams.where(playing: true)
+            if @playing.blank?
+              @round = Round.new(round_params)
+              @round.tournament_id = @tournament.id
+              if @round.save
+                redirect_to @tournament
+              else
+                render 'new'
+              end
+            else
+              redirect_to @tournament
+              flash[:notice] = " Update all results for " + @tournament.rounds.last.name 
+            end
+          end
+        else
           if @calc_rounds == @existing_num 
             @tournament.update(completed: true)
             redirect_to @tournament
@@ -78,7 +85,7 @@ class RoundsController < ApplicationController
               flash[:notice] = " Update all results for " + @tournament.rounds.last.name 
             end
           end      
-        #end
+        end
       elsif @tournament.mode == "Round_Robin"
         unless @existing_num == @total_rounds 
           @round = Round.new(round_params)

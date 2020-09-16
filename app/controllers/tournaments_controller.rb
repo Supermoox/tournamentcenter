@@ -80,6 +80,6 @@ class TournamentsController < ApplicationController
     end
  
     def tournament_params
-      params.require(:tournament).permit(:name, :mode, :kind, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
+      params.require(:tournament).permit(:name, :mode, :kind, :rounds_num, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
     end
 end

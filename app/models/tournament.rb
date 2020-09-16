@@ -5,6 +5,7 @@ class Tournament < ApplicationRecord
   belongs_to :user
   enum mode: [:Round_Robin, :Swiss_System, :Elimination]
   enum kind: [:Individuals, :Teams]
+  enum rounds_num: [:Default, :Five, :Nine ]
   accepts_nested_attributes_for :teams, allow_destroy: true, reject_if: :all_blank
 
 
