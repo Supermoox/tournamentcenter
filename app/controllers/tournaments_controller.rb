@@ -17,6 +17,7 @@ class TournamentsController < ApplicationController
     @players = Player.where(tournament_id: @tournament.id).order("goals DESC").order("name")
 
     @playing = @teams.where(playing: true)
+
   end
 
   def new
@@ -80,6 +81,6 @@ class TournamentsController < ApplicationController
     end
  
     def tournament_params
-      params.require(:tournament).permit(:name, :mode, :kind, :rounds_num, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
+      params.require(:tournament).permit(:name, :mode, :kind, :rounds_num, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :wins, :played, :lost, :allowed, :forced, :draws, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
     end
 end

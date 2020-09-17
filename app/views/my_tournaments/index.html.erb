@@ -14,10 +14,11 @@
 	        <span style="font-size: large; color: #1E90FF; float: right;"><%= link_to 'Edit', edit_tournament_path(tournament), class: "btn btn-default" %></span>
         </h4>
         <hr>
-        <p style="color: #C71585;">To add players to a team, select it.</p>
 		    <% tournament.teams.each do |team| %>
 		    	<p id="team-player">
-		    		<strong><%= link_to team.name, edit_team_path(team) %></strong>
+
+            <span><strong><%= link_to team.name, edit_team_path(team) %></strong></span>
+		    		<span><%= link_to "Edit", edit_team_path(team) %></span>
 		    	</p>
 		    <% end %>
       </div>

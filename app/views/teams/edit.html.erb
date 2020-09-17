@@ -1,4 +1,4 @@
-<h4 style="text-align: center; color: #191970;">Edit Team</h4>
+<h4 style="text-align: center; color: #191970;">Edit Team/Player</h4>
 <%= form_for @team do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
@@ -12,24 +12,99 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.text_field :name, id: :team_name %>
+  <div class="row">
+    <div class="col-xs-12">
+      <span style="color: #337ab7;">Name</span>
+      <span><%= f.text_field :name, :required => true, class: "form-control" %></span> 
+    </div>
+  </div>
+  
+  <% unless @team.tournament.kind == "Individuals" %>
+    <div class="form-group">
+      <div class="actions">
+        <%= link_to_add_association 'Add Player', f, :players, class: 'btn btn-primary', data: { association_insertion_node: '.players', association_insertion_method: :append } %>
+        <span style="color: grey;">Click this button repeatedly to add more or players!</span>
+      </div>
+      <div class="players">
+        <p style="margin-bottom:20px;">
+          <%= f.fields_for :players do |builder| %>
+            <%= render 'player_fields2', f: builder %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+
+
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Points</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :points %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Wins</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :wins %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Lost</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :lost %></span> 
+        </p>
+      </p>
+    </div>    
+  </div>  
+
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Draws</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :draws %></span> 
+        </p>
+      </p>
+    </div>
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Played</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :played %></span> 
+        </p>
+      </p>
+    </div>  
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Forced</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :forced %></span> 
+        </p>
+      </p>
+    </div> 
   </div>
 
-
-  <div class="form-group">
-    <div class="actions">
-      <%= link_to_add_association 'Add Player', f, :players, class: 'btn btn-primary', data: { association_insertion_node: '.players', association_insertion_method: :append } %>
-      <span style="color: grey;">Click this button repeatedly to add more or players!</span>
-    </div>
-    <div class="players">
-      <p style="margin-bottom:20px;">
-        <%= f.fields_for :players do |builder| %>
-          <%= render 'player_fields2', f: builder %>
-        <% end %>
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Allowed</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :allowed %></span> 
+        </p>
       </p>
     </div>
   </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

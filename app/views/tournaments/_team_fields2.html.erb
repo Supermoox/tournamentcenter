@@ -1,15 +1,86 @@
 <div class="nested-fields">
 
-  <div class="form-group">
-  	<p style="margin-top:10px;">
-    <span><%= link_to_remove_association "Remove this Team/Player", f, class: 'btn btn-danger btn-xs' %></span>
-    <span><%= f.text_field :name, :required => true, class: "form-control" %></span>  		
 
-  	</p>
-  	<p style="margin-top:10px; width: 100px;">
-      <span style="color: #337ab7;">points</span>
-      <span><%= f.number_field :points %></span> 
-  	</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <span style="color: #337ab7;">Name</span>
+      <span><%= f.text_field :name, :required => true, class: "form-control" %></span> 
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Points</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :points %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Wins</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :wins %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Lost</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :lost %></span> 
+        </p>
+      </p>
+    </div>    
+  </div>  
+
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Draws</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :draws %></span> 
+        </p>
+      </p>
+    </div>
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Played</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :played %></span> 
+        </p>
+      </p>
+    </div>  
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Forced</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :forced %></span> 
+        </p>
+      </p>
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Allowed</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :allowed %></span> 
+        </p>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <p style="margin-top:10px; float: right;">
+      <span><%= link_to_remove_association "Delete", f, class: 'btn btn-danger btn-xs' , data: { confirm: 'Are you sure you want to delete this Player/Team?' } %>
+      </span>
+    </p>
   </div>  
 
 </div>
