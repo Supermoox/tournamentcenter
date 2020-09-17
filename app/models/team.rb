@@ -2,6 +2,7 @@ class Team < ApplicationRecord
   belongs_to :tournament
   has_many :players, dependent: :destroy
   after_create :initialize_team
+  #after_update :update_pairs
   accepts_nested_attributes_for :players, allow_destroy: true, reject_if: :all_blank
   private
 
@@ -29,5 +30,10 @@ class Team < ApplicationRecord
 
     self.num = @teams - 1
     self.save
+  end
+
+  def update_pairs
+    @tournament = self.tournament
+    @rounds = @tournament.rounds
   end
 end

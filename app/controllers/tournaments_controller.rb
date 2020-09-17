@@ -17,6 +17,8 @@ class TournamentsController < ApplicationController
     @players = Player.where(tournament_id: @tournament.id).order("goals DESC").order("name")
 
     @playing = @teams.where(playing: true)
+    @team_goals = Team.where(tournament_id: @tournament.id).order("forced DESC")
+    @top = @team_goals.first.forced 
 
   end
 

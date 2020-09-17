@@ -10,6 +10,8 @@ class Pair < ApplicationRecord
 		    @home = @teams.where(id: self.home).first
 		    @away = @teams.where(id: self.away).first
 
+
+
 		    unless self.score_home == nil || self.score_away  == nil 
 		    	if self.score_home > self.score_away
 		    		@home.update(points: @home.points + 2)
