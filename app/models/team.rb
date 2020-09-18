@@ -34,8 +34,6 @@ class Team < ApplicationRecord
 
   def update_pairs
     @id = self.tournament.id
-    #@tournament = Tournament.find(@id)
-
     @rounds = Round.where(tournament_id: @id )
 
     @rounds.each do |round|
