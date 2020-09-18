@@ -18,8 +18,6 @@ class TournamentsController < ApplicationController
 
     @playing = @teams.where(playing: true)
     @team_goals = Team.where(tournament_id: @tournament.id).order("forced DESC")
-    @top = @team_goals.first.forced 
-
   end
 
   def new

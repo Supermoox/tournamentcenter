@@ -62,7 +62,7 @@ class Round < ApplicationRecord
             end
           end
           @count = 2
-        elsif @count == 2
+        else #elsif @count == 2
           @pair = self.pairs.create!
           @teams2 = @teams.where(playing: false).order("points DESC")
           @current_team = @teams2.first
@@ -84,7 +84,10 @@ class Round < ApplicationRecord
                   end
                 end
               end
-              if !@found
+
+              if @found
+                @pair.save
+              else
                 @pair.home = opponent.id 
                 @pair.away = @current_team.id
                 @pair.home_team = opponent.name
@@ -99,15 +102,93 @@ class Round < ApplicationRecord
           end
         end
   		end
-      @umatched_pairs = self.pairs.where(home: nil).where(away: nil)
-      unless @umatched_pairs.blank?
-        @umatched_pairs.each do |pair|
-          @unmatched = @teams.where(playing: false).order("points DESC")
-          pair.home = @unmatched.first.id
-          pair.away = @unmatched.drop(1).first.id
-          @unmatched.first.update(playing: true)
-          @unmatched.drop(1).first.update(playing: true)
-          pair.save
+
+      #Pair the unpaired teams through swap
+      
+      @empty_pairs = self.pairs.where(home: nil).where(away: nil)
+      #@unmatched_teams = @teams.where(playing: false)
+      @drop = -2 
+      unless @empty_pairs.blank? 
+        @empty_pairs.each do |empt_pair|
+          @drop = @drop + 2
+          @unmatched = @teams.where(playing: false).order("points DESC").first    #F
+          @filed_pairs = self.pairs.where.not(home: nil).order("created_at DESC").drop(@drop)
+          @next_pair = false
+          @filed_pairs.each do |filed_pair|
+            unless @next_pair
+              @home_id = filed_pair.home
+              @away_id = filed_pair.away
+              @home_team = @teams.find(@home_id)     
+              @away_team = @teams.find(@away_id)      
+
+              @found = false   
+              @rounds.each do |round|
+                unless round.id == self.id
+                  if !@found
+                    round.pairs.each do |pair|
+                      if !@found
+                        if pair.home == @home_team.id || pair.away == @home_team.id
+                          if pair.home == @unmatched.id || pair.away == @unmatched.id
+                            @found = true
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+
+              unless @found
+                @unmatched_teams = @teams.where(playing: false).where("id != ?", @unmatched.id) 
+                @found2 = false
+                @swap = false
+                @possible_match = false
+                @unmatched_teams.each do |opponent| 
+                  unless @swap
+                    @rounds.each do |round|
+                      @next_round = false
+                      unless round.id == self.id
+                        unless @found2
+                          round.pairs.each do |pair|
+                            unless @next_round
+                              if !@found2
+                                if pair.home == opponent.id || pair.away == opponent.id
+                                  @next_round = true
+                                  if pair.home == @away_team.id || pair.away == @away_team.id
+                                    @found2 = true
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+
+                    unless @found2
+
+                      empt_pair.home = @unmatched.id 
+                      empt_pair.away = @home_team.id
+                      empt_pair.home_team = @unmatched.name
+                      empt_pair.away_team = @home_team.name                  
+
+                      filed_pair.home = opponent.id 
+                      filed_pair.home_team = opponent.name
+
+                      @swap = true
+                      @next_pair = true
+                      opponent.update(playing: true)
+                      @away_team.update(playing: true)
+                      @unmatched.update(playing: true)
+                      @home_team.update(playing: true)
+                      empt_pair.save                  
+                      filed_pair.save                  
+                    end
+                  end
+                end  
+              end
+            end
+          end
         end
       end
 
