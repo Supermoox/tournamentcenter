@@ -17,8 +17,7 @@
 		    <% tournament.teams.each do |team| %>
 		    	<p id="team-player">
 
-            <span><strong><%= link_to team.name, edit_team_path(team) %></strong></span>
-		    		<span><%= link_to "Edit", edit_team_path(team) %></span>
+            <span style="color: black;"><strong><%= team.name %></strong></span>
 		    	</p>
 		    <% end %>
       </div>
