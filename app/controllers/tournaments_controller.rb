@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :table_logs, :goals_leaderboard, :destroy, :publish, :unpublish]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :table_logs, :goals_leaderboard]
  
   def index
     @tournaments = Tournament.where(["name LIKE ?","%#{params[:search]}%"]).order("created_at DESC").paginate(page: params[:page], per_page: 10)
