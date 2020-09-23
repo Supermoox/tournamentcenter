@@ -15,7 +15,6 @@ class Team < ApplicationRecord
   	self.wins = 0
   	self.points = 0
   	
-
     @id = self.tournament.id
     @teams = Team.where("tournament_id = ?", @id).count
 
@@ -27,7 +26,7 @@ class Team < ApplicationRecord
       self.host = true
     end
 
-    self.num = @teams - 1
+    self.num = @teams 
     self.save
   end
 end

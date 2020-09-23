@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     member do
       patch :publish
       patch :unpublish
+      get :table_logs
+      get :goals_leaderboard
     end
   end
   resources :rounds

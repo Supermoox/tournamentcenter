@@ -1,5 +1,3 @@
-
-
 <div class="panel">
 	<h4 style="text-align: center; color: #191970;">Your Tournaments</h4>
 	<% unless @tournaments.blank? %>
@@ -16,7 +14,6 @@
         <hr>
 		    <% tournament.teams.each do |team| %>
 		    	<p id="team-player">
-
             <span style="color: black;"><strong><%= team.name %></strong></span>
 		    	</p>
 		    <% end %>
@@ -28,6 +25,5 @@
      <h4> You have not added a tournament yet </h4>
   <% end %>
   <div class="row"><%= will_paginate @tournaments   %></div>
-
 </div>
 

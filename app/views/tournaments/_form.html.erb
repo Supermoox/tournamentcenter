@@ -21,14 +21,12 @@
   <div class="form-group">
     <p id="form-lebel"><%= f.label :mode %><p>
     
-
     <div class="form-group">
       <select name="tournament[mode]" id="tournament_mode" onchange="yesnoCheck(this);">
         <option value="Round_Robin">Round_Robin</option>
         <option value="Swiss_System">Swiss_System</option>
       </select>
     </div>
-
   </div>
 
 
@@ -41,6 +39,14 @@
   <div class="form-group">
     <p id="form-lebel"><%= f.label :tournament_logo %><p>
     <%= f.file_field :image %>
+  </div>  
+  <div class="form-group">
+    <p id="form-lebel"><%= f.label :Link %>
+      <span style="color: grey; margin-left: 10px; font-size: 12px;">
+        You may paste in this field a link for your association
+      </span>
+    <p> 
+    <%= f.text_field :organiser_link %>
   </div>  
 
 

@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
+  before_action :set_tournament, only: [:show, :edit, :update, :table_logs, :goals_leaderboard, :destroy, :publish, :unpublish]
   before_action :authenticate_user!, except: [:index, :show]
  
   def index
@@ -18,10 +18,33 @@ class TournamentsController < ApplicationController
 
     @playing = @teams.where(playing: true)
     @team_goals = Team.where(tournament_id: @tournament.id).order("forced DESC")
+
+    @organiser_link = @tournament.organiser_link
+    #@url = "http://www.aspap.org/articles/" + @article.id.to_s
   end
 
   def new
     @tournament = current_user.tournaments.build
+  end  
+
+  def table_logs
+    @teams = Team.where(tournament_id: @tournament.id).order("points DESC").order("forced - allowed DESC").order("name")
+    @count = 0
+    @g_count = 0
+    @players = Player.where(tournament_id: @tournament.id).order("goals DESC").order("name")
+
+    @playing = @teams.where(playing: true)
+    @team_goals = Team.where(tournament_id: @tournament.id).order("forced DESC")
+  end  
+
+  def goals_leaderboard
+    @teams = Team.where(tournament_id: @tournament.id).order("points DESC").order("forced - allowed DESC").order("name")
+    @count = 0
+    @g_count = 0
+    @players = Player.where(tournament_id: @tournament.id).order("goals DESC").order("name")
+
+    @playing = @teams.where(playing: true)
+    @team_goals = Team.where(tournament_id: @tournament.id).order("forced DESC")
   end
    
   def edit
@@ -81,6 +104,6 @@ class TournamentsController < ApplicationController
     end
  
     def tournament_params
-      params.require(:tournament).permit(:name, :mode, :kind, :rounds_num, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :wins, :played, :lost, :allowed, :forced, :draws, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
+      params.require(:tournament).permit(:name, :mode, :kind, :organiser_link, :rounds_num, :publish, :image, teams_attributes: [:id, :_destroy, :name, :points, :wins, :played, :lost, :allowed, :forced, :draws, :host, :seeded, :completed, :tournament_id, players_attributes: [:id, :_destroy, :name, :goals]])
     end
 end

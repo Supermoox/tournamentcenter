@@ -14,7 +14,7 @@ class Tournament < ApplicationRecord
    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 
-   private
+  private
 
   def update_pairs
     @id = self.id

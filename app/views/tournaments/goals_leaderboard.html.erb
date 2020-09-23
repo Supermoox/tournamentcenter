@@ -1,0 +1,68 @@
+<h4 style="text-align: center; font-family: initial;"> 
+	<% unless @tournament.image.blank? %>
+		<p class="tournament_logo"><%= image_tag @tournament.image.url(:medium) %></p>
+	<% end %>
+	<p>
+	<%= @tournament.name %>
+	</p>
+</h4>
+
+<p><span class="page_link"><%= link_to 'Back',@tournament %></span> </p>
+
+
+<% if @tournament.kind == "Individuals"  %>
+	<% unless @team_goals.blank? %>
+		<div class="row log-table">
+			<hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
+			<h4 style="text-align: center;"> Goals Leaderboard</h4>
+			<div class="table-responsive">
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th scope="col">Name</th>
+			        <th scope="col">Goals</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% @team_goals.each do |team| %>
+				      <tr>
+				        <td><%= team.name %></td>
+				        <td><%= team.forced %></td>
+				      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<% unless @players.blank? %>
+		<div class="row log-table">
+			<hr style="height:2px;border:none;color:#333;background-color:#C71585;" />
+			<h4 style="text-align: center;"> Goals Leaderboard</h4>
+			<div class="table-responsive">
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th scope="col">Position</th>
+			        <th scope="col">Name</th>
+			        <th scope="col">Team</th>
+			        <th scope="col">Goals</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% @players.each do |player| %>
+			    		<% @g_count = @g_count + 1 %>
+				      <tr>
+				        <th scope="row"><%= @g_count %></th>
+				        <td><%= player.name %></td>
+				        <td><%= player.team.name %></td>
+				        <td><%= player.goals %></td>
+				      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	<% end %>
+<% end %>

@@ -62,6 +62,19 @@
 	  		<% end %>
 	  	<% end %>	
 
+
+			   
+
+
+			<div class="row tournament_details">
+				<span class="page_link"><%= link_to 'Table',table_logs_tournament_path(@tournament) %></span> 
+				<span class="page_link"><%= link_to 'Goals Leaderboard',goals_leaderboard_tournament_path(@tournament) %></span>
+				<% unless @organiser_link.nil? %>
+					<span class="page_link"><a href="<%= @organiser_link %>"> Organisers</a></span>
+				<% end %>
+			</div>
+
+
 			<div class="row"><%= will_paginate @rounds, :previous_label => 'Prev', :next_label => 'Next' %></div>
 
 
@@ -125,6 +138,14 @@
 	  	<% end %>
 
 
+			<div class="row tournament_details">
+				<span class="page_link"><%= link_to 'Table',table_logs_tournament_path(@tournament) %></span> 
+				<span class="page_link"><%= link_to 'Goals Leaderboard',goals_leaderboard_tournament_path(@tournament) %></span>
+				<% unless @organiser_link.nil? %>
+					<span class="page_link"><a href="<%= @organiser_link %>"> Organisers</a></span>
+				<% end %>
+			</div>
+
 	  	<div class="row"><%= will_paginate @rounds %></div>
 	  	
 			
@@ -133,6 +154,8 @@
 				<% if user_signed_in? && current_user == @tournament.user %>
 					<p id="team"><%= link_to "Update Results", edit_round_path(round), class: "btn btn-default"  %></p>
 				<% end %>
+
+
 		    <p id="versus-header"><%= round.name %></p>
 		    <% round.pairs.order("created_at").each do |pair| %>
 		    	<% unless round.pairs.blank? %>
