@@ -1,10 +1,67 @@
-  <p id="round_name_field"><%= f.text_field :name, value: "Round" %></p>
 
 
-        <span>
-          <% if f.object.ended %>
-            <%= f.number_field :score_home, :readonly => true %> 
-          <% else %>
-            <%= f.number_field :score_home, min: 0  %>    
-          <% end %>            
-        </span>
+    <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Points</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :points %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Wins</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :wins %></span> 
+        </p>
+      </p>
+    </div>    
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Lost</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :lost %></span> 
+        </p>
+      </p>
+    </div>    
+  </div>  
+
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Draws</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :draws %></span> 
+        </p>
+      </p>
+    </div>
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Played</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :played %></span> 
+        </p>
+      </p>
+    </div>  
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Forced</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :forced %></span> 
+        </p>
+      </p>
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p style="margin-top:20px;">
+        <span style="color: #337ab7;">Allowed</span>
+        <p style="margin-top:10px; width: 100px;">
+          <span><%= f.number_field :allowed %></span> 
+        </p>
+      </p>
+    </div>
+  </div>

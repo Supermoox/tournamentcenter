@@ -12,9 +12,17 @@
 	        <span style="font-size: large; color: #1E90FF; float: right;"><%= link_to 'Edit', edit_tournament_path(tournament), class: "btn btn-default" %></span>
         </h4>
         <hr>
+        <% if tournament.kind == "Teams" %>
+          <span style="font-style: italic; color: grey;">Select a team to add or update players!</span>
+        <% end %>
 		    <% tournament.teams.each do |team| %>
 		    	<p id="team-player">
-            <span style="color: black;"><strong><%= team.name %></strong></span>
+            
+            <% if tournament.kind == "Teams" %>
+              <span style="color: black;"><strong><%= link_to team.name, edit_team_path(team) %></strong></span>
+            <% else %>
+              <span style="color: black;"><strong><%= team.name %></strong></span>
+            <% end %>
 		    	</p>
 		    <% end %>
       </div>

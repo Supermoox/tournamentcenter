@@ -205,16 +205,18 @@ class Round < ApplicationRecord
      
       @teams = Team.where("tournament_id = ?", @id).order("num")
       @teams_num = @teams.count
+      #number of pairs in a round
       @bound = @teams_num / 2
 
 
-
+      #getting the number of exisiting rounds
       @count_rounds = Round.where("tournament_id = ?", @id).count
 
-   
+      #naming a round
       self.name = "Round " + @count_rounds.to_s
       self.save
 
+      #determine the number of first leg games
       @first_legs = @teams_num - 1
 
       if @count_rounds > @first_legs
@@ -252,8 +254,8 @@ class Round < ApplicationRecord
         @bound.times do
           @teams = Team.where("tournament_id = ?", @id).where(playing: false)
           @pair = self.pairs.create!
-          @group1 = @teams.where("num < ?", @bound)
-          @group2 = @teams.where("num >= ?", @bound)
+          @group1 = @teams.where("num <= ?", @bound)
+          @group2 = @teams.where("num > ?", @bound)
           @first_team = @group1.order("num").first
           @second_team = @group2.order("num DESC").first
 
